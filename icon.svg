@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b4033"/><stop offset="1" stop-color="#269477"/></linearGradient></defs>
+<rect width="512" height="512" rx="112" fill="url(#g)"/>
+<circle cx="256" cy="210" r="116" fill="#ffd700" opacity=".16"/>
+<path d="M256 380V226" stroke="#ffd700" stroke-width="22" stroke-linecap="round"/>
+<path d="M256 285c-94 0-132-66-132-132 82 0 132 43 132 132Z" fill="#7ee0a5" stroke="#ffd700" stroke-width="10"/>
+<path d="M256 250c0-84 52-132 132-132 0 78-42 132-132 132Z" fill="#b5f0c8" stroke="#ffd700" stroke-width="10"/>
+<path d="M178 390h156" stroke="#ffd700" stroke-width="18" stroke-linecap="round"/>
+<text x="256" y="455" font-size="48" font-family="Arial,sans-serif" font-weight="bold" fill="#ffd700" text-anchor="middle">نور يومي</text>
+</svg>

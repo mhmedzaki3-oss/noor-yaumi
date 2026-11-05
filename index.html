@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0d4d3d">
+<meta name="description" content="نور يومي - رفيق عم محمد المبهج">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+
+<title>نور يومي | رفيق عم محمد المبهج</title>
+<style>
+:root{--bg1:#0b4033;--bg2:#16745a;--bg3:#269477;--gold:#ffd700;--white:#fff;--glass:rgba(255,255,255,.12);--line:rgba(255,215,0,.32);--ink:#0b4033}
+*{box-sizing:border-box}body{margin:0;padding:16px;background:linear-gradient(135deg,var(--bg1),var(--bg2) 55%,var(--bg3));color:var(--white);font:18px/1.65 "Segoe UI",Tahoma,sans-serif;min-height:100vh}.app{max-width:980px;margin:auto}
+button{font:inherit;cursor:pointer}.top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;background:#0003;border:1px solid var(--line);padding:12px 16px;border-radius:16px;margin-bottom:16px}.group{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.ctrl,.btn,.mini{border:0;border-radius:12px;padding:10px 15px;font-weight:700}.ctrl{background:#ffffff26;color:white}.ctrl:hover,.ctrl:focus-visible{background:var(--gold);color:var(--ink)}.hero,.tree,.card,.modal-box{border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(8px);border-radius:22px}.hero{text-align:center;padding:24px 16px;margin-bottom:16px}.hero h1{color:var(--gold);font-size:clamp(1.8rem,5vw,2.5rem);margin:0 0 5px}.date{opacity:.9}.score{display:inline-block;background:var(--gold);color:var(--ink);font-weight:800;padding:6px 18px;border-radius:30px;margin-top:10px}.tree{text-align:center;padding:18px;margin-bottom:18px}.tree-icon{font-size:4rem;line-height:1.3}.tree-label{color:var(--gold);font-weight:700}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-bottom:20px}.card{padding:20px;text-align:center;transition:.2s;cursor:pointer;position:relative;color:white}.card:hover{transform:translateY(-3px);background:rgba(255,255,255,.2)}.card.done{border:2px solid #67e8a5;background:#22c55e25}.card.done:after{content:"✓";position:absolute;left:14px;top:8px;color:#86efac;font-size:1.5rem;font-weight:bold}.ico{font-size:2.8rem}.ctitle{font-size:1.2rem;color:var(--gold);font-weight:800}.sub{opacity:.9;font-size:.95rem}.modal{display:none;position:fixed;inset:0;background:#000b;z-index:20;padding:14px;align-items:center;justify-content:center}.modal.open{display:flex}.modal-box{width:min(680px,100%);max-height:92vh;overflow:auto;background:linear-gradient(140deg,#176e55,#0b4033);border:2px solid var(--gold);padding:22px;position:relative}.close{position:sticky;top:0;float:left;border:0;background:transparent;color:var(--gold);font-size:2rem;line-height:1}.modal h2{text-align:center;color:var(--gold);margin:6px 30px 18px}.panel{background:#ffffff14;border:1px solid #ffffff22;border-radius:15px;padding:16px;margin:12px 0;line-height:1.9}.btn{width:100%;padding:13px;margin-top:9px;background:var(--gold);color:var(--ink);font-size:1.05rem}.btn.alt{background:#ffffff25;color:white}.btn.danger{background:#ef4444;color:white}.timer,.counter{text-align:center;color:var(--gold);font-size:3.5rem;font-weight:800;margin:14px}.stretch{background:#ffffff12;border:1px solid var(--line);border-radius:15px;padding:15px;margin:12px 0}.stretch h3{color:var(--gold);margin:0 0 8px}.stretch p{margin:6px 0}.tag{display:inline-block;background:#ffd70022;color:var(--gold);padding:3px 9px;border-radius:9px;margin:3px}.songs{display:grid;gap:10px}.song{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#ffffff14;border-radius:12px;padding:12px}.song strong{color:var(--gold)}.song button{background:#dc4545;color:white;border:0;border-radius:9px;padding:9px 12px}.badges{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}.badge{background:#ffffff14;border:1px solid var(--line);border-radius:13px;text-align:center;padding:15px}.badge.locked{opacity:.38;filter:grayscale(1)}.badge b{display:block;color:var(--gold)}.notice{font-size:.9rem;opacity:.9}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--ink);padding:11px 18px;border-radius:12px;font-weight:800;z-index:40;display:none;max-width:90%;text-align:center}.toast.show{display:block}.footer{text-align:center;opacity:.8;font-size:.85rem;padding:12px}
+@media(max-width:560px){body{padding:10px}.top{padding:10px}.ctrl{padding:8px 10px}.modal-box{padding:16px}.timer,.counter{font-size:2.8rem}.song{align-items:flex-start}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top">
+    <div class="group"><b>🔠 الخط:</b><button class="ctrl" onclick="changeFont(2)">تكبير +</button><button class="ctrl" onclick="changeFont(-2)">تصغير −</button></div>
+    <div class="group"><button class="ctrl" onclick="speak('أهلاً بك يا عم محمد في نور يومي، رفيقك المبهج')">🔊 استماع للترحيب</button><button class="ctrl" onclick="exportData()">⬇ نسخة احتياطية</button><button class="ctrl" onclick="document.getElementById('restoreFile').click()">⬆ استعادة</button><input id="restoreFile" type="file" accept="application/json" hidden onchange="importData(event)"></div>
+  </div>
+  <header class="hero"><h1>🌟 نور يومي 🌟</h1><div id="greeting">السلام عليكم</div><div class="date" id="date"></div><div class="score">🏆 نقاطك: <span id="score">0</span></div></header>
+  <section class="tree"><div class="tree-icon" id="tree">🌱</div><div class="tree-label" id="treeLabel">شجرتك في بداية الطريق — أنجز مهامك لتنمو!</div></section>
+  <main class="grid">
+    <div class="card" id="card-quran" onclick="openModal('quran')"><div class="ico">📖</div><div class="ctitle">القرآن الكريم</div><div class="sub">وردك اليومي والتفسير</div></div>
+    <div class="card" id="card-hadith" onclick="openModal('hadith')"><div class="ico">🕊️</div><div class="ctitle">حديث اليوم</div><div class="sub">هدي نبوي شريف</div></div>
+    <div class="card" id="card-sport" onclick="openModal('sport')"><div class="ico">🚶‍♂️</div><div class="ctitle">الحركة والتمدد</div><div class="sub">حركة لطيفة ومؤقتات</div></div>
+    <div class="card" id="card-read" onclick="openModal('read')"><div class="ico">📚</div><div class="ctitle">القراءة والمعرفة</div><div class="sub">وقت للمطالعة والثقافة</div></div>
+    <div class="card" onclick="openModal('tasbeeh')"><div class="ico">📿</div><div class="ctitle">المسبحة</div><div class="sub">عداد التسبيح الرقمي</div></div>
+    <div class="card" onclick="openModal('songs')"><div class="ico">🎵</div><div class="ctitle">أغاني وتسلية</div><div class="sub">روائع الطرب الأصيل</div></div>
+    <div class="card" onclick="openModal('badges')"><div class="ico">🏆</div><div class="ctitle">إنجازاتي</div><div class="sub">شاراتك وشجرتك</div></div>
+  </main>
+  <div class="footer">نور يومي • رفيق عم محمد المبهج</div>
+</div>
+
+<div class="modal" id="m-quran" onclick="backdrop(event,'quran')"><section class="modal-box"><button class="close" onclick="closeModal('quran')">×</button><h2>📖 وردك القرآني اليومي</h2><div class="panel" style="text-align:center"><div style="color:var(--gold)">آية اليوم</div><div style="font-size:1.55rem;line-height:2.2">﴿ وَقُل رَّبِّ زِدْنِي عِلْمًا ﴾</div><div>سورة طه — الآية ١١٤</div></div><div class="panel">هدف اليوم: قراءة صفحة واحدة على الأقل والتدبر فيها بهدوء.</div><button class="btn alt" onclick="speak('سورة طه، الآية مئة وأربعة عشر. وقل رب زدني علما')">🔊 استمع للآية</button><button class="btn" onclick="completeTask('quran')">✅ قرأت وردي اليوم</button></section></div>
+
+<div class="modal" id="m-hadith" onclick="backdrop(event,'hadith')"><section class="modal-box"><button class="close" onclick="closeModal('hadith')">×</button><h2>🕊️ حديث اليوم الشريف</h2><div class="panel"><div style="color:var(--gold)">قال رسول الله ﷺ:</div><div id="hadithText" style="font-size:1.3rem">«خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ»</div><div id="hadithSource" class="notice">رواه البخاري</div></div><div class="panel" id="hadithExplain">💡 الشرح: خير الناس من يتعلم القرآن ويعمل به ويعلّمه.</div><button class="btn alt" onclick="speakHadith()">🔊 استمع للحديث والشرح</button><button class="btn alt" onclick="nextHadith()">🔄 حديث آخر</button><button class="btn" onclick="completeTask('hadith')">✅ قرأت الحديث</button></section></div>
+
+<div class="modal" id="m-sport" onclick="backdrop(event,'sport')"><section class="modal-box"><button class="close" onclick="closeModal('sport')">×</button><h2>🚶‍♂️ الحركة والتمدد</h2><div class="panel"><b>تنبيه للسلامة:</b> اختر حركة مريحة وآمنة. لا تؤدِّ أي تمرين يسبب ألماً أو تنميلاً أو يمتد أثره للساق. بعد جراحة أو إصابة بالظهر، اعتمد فقط التمارين التي أجازها الطبيب أو أخصائي العلاج الطبيعي. هذه الصفحة ليست وصفة علاجية.</div><div class="stretch"><h3>🚶 مشي هادئ في مكان مستوٍ</h3><p>تحرك بوتيرة مريحة مع الاستناد عند الحاجة. توقف إذا شعرت بدوار أو ألم أو ضيق نفس غير معتاد.</p><span class="tag">3–10 دقائق</span></div><div class="stretch"><h3>🪑 تحريك الكاحلين أثناء الجلوس</h3><p>اجلس مع إسناد الظهر، حرّك القدمين لأعلى وأسفل ببطء ضمن مدى مريح، دون إجبار المفصل.</p><span class="tag">30 ثانية</span><span class="tag">بلا ألم</span></div><div class="stretch"><h3>🌬️ تنفس هادئ</h3><p>اجلس براحة، خذ شهيقاً لطيفاً ثم أخرج الزفير ببطء. لا تحبس النفس.</p><span class="tag">دقيقة واحدة</span></div><div class="timer" id="sportTimer">10:00</div><button class="btn alt" id="sportBtn" onclick="toggleTimer('sport',600)">▶ ابدأ مؤقت الحركة</button><button class="btn" onclick="completeTask('sport')">✅ أكملت نشاطي اليوم</button></section></div>
+
+<div class="modal" id="m-read" onclick="backdrop(event,'read')"><section class="modal-box"><button class="close" onclick="closeModal('read')">×</button><h2>📚 وقت القراءة والمعرفة</h2><div class="panel">مقترحات لطيفة:<br>• رياض الصالحين<br>• قصص الأنبياء<br>• سيرة النبي ﷺ<br>• كتاب في التاريخ أو الثقافة العامة<br>• مقال علمي موثوق في موضوع تحبه</div><div class="timer" id="readTimer">15:00</div><button class="btn alt" id="readBtn" onclick="toggleTimer('read',900)">▶ ابدأ مؤقت القراءة</button><button class="btn" onclick="completeTask('read')">✅ أتممت وقت القراءة</button></section></div>
+
+<div class="modal" id="m-tasbeeh" onclick="backdrop(event,'tasbeeh')"><section class="modal-box"><button class="close" onclick="closeModal('tasbeeh')">×</button><h2>📿 المسبحة الرقمية</h2><div class="panel" style="text-align:center;color:var(--gold);font-size:1.3rem">سبحان الله وبحمده<br>سبحان الله العظيم</div><div class="counter" id="tasbeehCount">0</div><button class="btn" onclick="incrementTasbeeh()">📿 سبّح — اضغط هنا</button><button class="btn alt" onclick="resetTasbeeh()">إعادة تعيين عداد اليوم</button></section></div>
+
+<div class="modal" id="m-songs" onclick="backdrop(event,'songs')"><section class="modal-box"><button class="close" onclick="closeModal('songs')">×</button><h2>🎵 روائع الطرب الأصيل</h2><div class="panel">اختر أغنية لفتح نتائج البحث عنها على يوتيوب.</div><div class="songs" id="songsList"></div></section></div>
+
+<div class="modal" id="m-badges" onclick="backdrop(event,'badges')"><section class="modal-box"><button class="close" onclick="closeModal('badges')">×</button><h2>🏆 إنجازاتك وشاراتك</h2><div class="panel" style="text-align:center">إجمالي نقاطك: <b id="modalScore">0</b> 🏆<br>أيام النشاط المتتالية: <b id="streak">0</b></div><div class="badges" id="badgesGrid"></div><button class="btn alt" onclick="resetAll()">إعادة ضبط بيانات التطبيق</button><p class="notice">إعادة الضبط تحذف النقاط والإنجازات المحفوظة على هذا الجهاز.</p></section></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const KEY='noorDailyV2';
+const emptyTasks=()=>({quran:false,hadith:false,sport:false,read:false});
+const today=()=>new Date().toLocaleDateString('en-CA');
+function freshState(){return {score:0,tasks:emptyTasks(),tasbeeh:0,day:today(),streak:0,lastCompletedDay:null,completedDays:[]};}
+let state;
+try{state=JSON.parse(localStorage.getItem(KEY))||freshState();}catch{state=freshState();}
+if(!state.tasks)state.tasks=emptyTasks();
+if(!Array.isArray(state.completedDays))state.completedDays=[];
+if(state.day!==today()){state.day=today();state.tasks=emptyTasks();state.tasbeeh=0;save();}
+let fontSize=18, timers={sport:null,read:null}, remaining={sport:600,read:900}, hadithIndex=0, toastTimer;
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch{toast('تعذر الحفظ؛ قد تكون مساحة التخزين ممتلئة.');}}
+function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2800);}
+function changeFont(delta){fontSize=Math.max(14,Math.min(28,fontSize+delta));document.body.style.fontSize=fontSize+'px';}
+function speak(text){if(!('speechSynthesis'in window)){toast('القراءة الصوتية غير مدعومة في هذا المتصفح');return;}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='ar-EG';u.rate=.9;speechSynthesis.speak(u);}
+function openModal(id){document.getElementById('m-'+id).classList.add('open');}
+function closeModal(id){document.getElementById('m-'+id).classList.remove('open');}
+function backdrop(e,id){if(e.target===e.currentTarget)closeModal(id);}
+function dateLabel(){document.getElementById('date').textContent=new Intl.DateTimeFormat('ar-EG',{weekday:'long',year:'numeric',month:'long',day:'numeric'}).format(new Date());}
+function greeting(){const h=new Date().getHours();document.getElementById('greeting').textContent=h<5?'🌙 ليلة مباركة':h<12?'☀️ صباح الخير والبركة':h<18?'🌤️ نهارك سعيد يا عم محمد':'🌆 مساء الخير والسرور';}
+function completeTask(task){if(state.tasks[task]){toast('أنجزت هذه المهمة اليوم بالفعل 🌟');return;}state.tasks[task]=true;state.score+=25;const d=today();if(!state.completedDays.includes(d))state.completedDays.push(d);state.completedDays=state.completedDays.slice(-400);state.streak=calculateStreak();state.lastCompletedDay=d;save();update();toast('أحسنت! أضفنا ٢٥ نقطة إلى رصيدك');speak('أحسنت يا عم محمد، تمت إضافة خمس وعشرين نقطة');setTimeout(()=>closeAll(),900);}
+function calculateStreak(){const days=[...new Set(state.completedDays)].sort();let count=0;let cursor=new Date();cursor.setHours(0,0,0,0);for(let i=0;i<days.length;i++){const key=cursor.toLocaleDateString('en-CA');if(days.includes(key)){count++;cursor.setDate(cursor.getDate()-1);}else if(i===0){cursor.setDate(cursor.getDate()-1);const prev=cursor.toLocaleDateString('en-CA');if(days.includes(prev)){count++;cursor.setDate(cursor.getDate()-1);}else break;}else break;}return count;}
+function closeAll(){document.querySelectorAll('.modal').forEach(m=>m.classList.remove('open'));}
+function update(){document.getElementById('score').textContent=state.score;document.getElementById('modalScore').textContent=state.score;document.getElementById('tasbeehCount').textContent=state.tasbeeh;document.getElementById('streak').textContent=calculateStreak();['quran','hadith','sport','read'].forEach(k=>document.getElementById('card-'+k).classList.toggle('done',!!state.tasks[k]));const n=Object.values(state.tasks).filter(Boolean).length;const trees=['🌱','🌿','🪴','🌳','🌲'];const labels=['شجرتك في بداية الطريق — أنجز مهامك لتنمو!','بدأت تنمو 🌱 أحسنت!','شجرتك تكبر 🌿 واصل!','ما شاء الله، شجرة مزدهرة!','🌟 شجرة مباركة ومكتملة اليوم!'];document.getElementById('tree').textContent=trees[n];document.getElementById('treeLabel').textContent=labels[n];renderBadges();save();}
+const badgeData=[['📖','قارئ القرآن',()=>state.tasks.quran],['🕊️','صاحب الحديث',()=>state.tasks.hadith],['💪','النشاط والحركة',()=>state.tasks.sport],['📚','محب المعرفة',()=>state.tasks.read],['🌟','أسبوع منتظم',()=>calculateStreak()>=7],['👑','بطل الشهر',()=>calculateStreak()>=30]];
+function renderBadges(){document.getElementById('badgesGrid').innerHTML=badgeData.map(([i,n,fn])=>`<div class="badge ${fn()?'':'locked'}"><div style="font-size:2rem">${i}</div><b>${n}</b></div>`).join('');}
+const hadiths=[
+{text:'«خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ»',source:'رواه البخاري',explain:'فضل تعلم القرآن وتعليمه والعمل به.'},
+{text:'«مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ»',source:'متفق عليه',explain:'حثّ على الكلمة الطيبة وترك الكلام المؤذي.'},
+{text:'«اتَّقِ اللَّهَ حَيْثُمَا كُنْتَ»',source:'رواه الترمذي',explain:'تذكير بمراقبة الله في السر والعلن.'}
+];
+function showHadith(){const h=hadiths[hadithIndex];document.getElementById('hadithText').textContent=h.text;document.getElementById('hadithSource').textContent=h.source;document.getElementById('hadithExplain').textContent='💡 الشرح: '+h.explain;}
+function nextHadith(){hadithIndex=(hadithIndex+1)%hadiths.length;showHadith();}
+function speakHadith(){const h=hadiths[hadithIndex];speak('قال رسول الله صلى الله عليه وسلم: '+h.text+'. '+h.explain);}
+const songs=[['زحمة يا دنيا زحمة','أحمد عدوية'],['السح الدح امبو','أحمد عدوية'],['بنت السلطان','أحمد عدوية'],['يا ناس يا ناس','أحمد عدوية'],['كله على كله','أحمد عدوية'],['حبة فوق وحبة تحت','أحمد عدوية']];
+function renderSongs(){document.getElementById('songsList').innerHTML=songs.map(([t,a])=>`<div class="song"><div><strong>🎤 ${t}</strong><div class="notice">${a}</div></div><button onclick="openYouTube('${encodeURIComponent(t+' '+a)}')">▶ يوتيوب</button></div>`).join('');}
+function openYouTube(q){window.open('https://www.youtube.com/results?search_query='+q,'_blank','noopener');}
+function toggleTimer(kind,total){const display=document.getElementById(kind+'Timer'),btn=document.getElementById(kind+'Btn');if(timers[kind]){clearInterval(timers[kind]);timers[kind]=null;btn.textContent='▶ استكمال المؤقت';return;}if(remaining[kind]<=0)remaining[kind]=total;btn.textContent='⏸ إيقاف مؤقت';timers[kind]=setInterval(()=>{remaining[kind]--;const m=Math.floor(remaining[kind]/60),s=remaining[kind]%60;display.textContent=m+':'+String(s).padStart(2,'0');if(remaining[kind]<=0){clearInterval(timers[kind]);timers[kind]=null;btn.textContent='▶ ابدأ من جديد';display.textContent='🎉 أحسنت!';toast('انتهى الوقت المحدد');speak('أحسنت، انتهى الوقت المحدد');}},1000);}
+function incrementTasbeeh(){state.tasbeeh++;save();update();}
+function resetTasbeeh(){if(!confirm('هل تريد تصفير عداد التسبيح اليوم؟'))return;state.tasbeeh=0;save();update();toast('تم تصفير عداد اليوم');}
+function exportData(){const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='noor-yawmi-backup-'+today()+'.json';a.click();URL.revokeObjectURL(url);toast('تم تجهيز النسخة الاحتياطية');}
+function importData(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const data=JSON.parse(reader.result);if(typeof data.score!=='number'||!data.tasks||typeof data.tasbeeh!=='number')throw Error();state={...freshState(),...data,tasks:{...emptyTasks(),...data.tasks}};if(state.day!==today()){state.day=today();state.tasks=emptyTasks();state.tasbeeh=0;}save();update();toast('تمت استعادة البيانات');}catch{toast('ملف النسخة الاحتياطية غير صالح');}e.target.value='';};reader.readAsText(file);}
+function resetAll(){if(!confirm('تأكيد حذف كل النقاط والإنجازات المحفوظة؟'))return;state=freshState();save();update();toast('تمت إعادة ضبط التطبيق');}
+function init(){dateLabel();greeting();showHadith();renderSongs();update();setInterval(greeting,60000);}
+init();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(err => console.warn('SW registration failed', err));
+  });
+}
+</script>
+</body>
+</html>
